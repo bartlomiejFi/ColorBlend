@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorBlend", "ColorBlend\ColorBlend.csproj", "{F7F536A9-5765-4FEE-9535-E81B0C6BE8B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorBlendTests", "ColorBlendTests\ColorBlendTests.csproj", "{2CD539C6-0A32-472C-855D-E315FF54080C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7F536A9-5765-4FEE-9535-E81B0C6BE8B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7F536A9-5765-4FEE-9535-E81B0C6BE8B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7F536A9-5765-4FEE-9535-E81B0C6BE8B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7F536A9-5765-4FEE-9535-E81B0C6BE8B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CD539C6-0A32-472C-855D-E315FF54080C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CD539C6-0A32-472C-855D-E315FF54080C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CD539C6-0A32-472C-855D-E315FF54080C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CD539C6-0A32-472C-855D-E315FF54080C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3EB0B610-AB9D-4D5D-857C-491AA6A21B8A}
+	EndGlobalSection
+EndGlobal

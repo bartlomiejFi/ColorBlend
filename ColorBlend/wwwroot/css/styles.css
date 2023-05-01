@@ -1,0 +1,11 @@
+﻿.ui-growl-message {
+    display: flex;
+}
+
+.ui-growl-title {
+    margin-right: 8px;
+}
+
+.ui-growl-message p {
+    white-space: pre-line;
+}

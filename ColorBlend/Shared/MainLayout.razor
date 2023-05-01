@@ -1,0 +1,20 @@
+﻿@inherits LayoutComponentBase
+@inject IColorsViewModel ViewModel
+
+<RadzenNotification />
+<RadzenLayout class="rz-base-3" Style="display: grid;height: stretch;grid-template-areas: 'rz-sidebar rz-header' 'rz-sidebar rz-body'">
+    <RadzenHeader class="rz-background-color-base-900">
+        <RadzenSidebarToggle Click="@(() => sidebarExpanded = !sidebarExpanded)" class="rz-base-3"/>
+    </RadzenHeader>
+    <RadzenSidebar @bind-Expanded="@sidebarExpanded" class="rz-background-color-base-900">
+        <RadzenPanelMenu >
+            <NavMenu />
+        </RadzenPanelMenu>
+    </RadzenSidebar>
+    <RadzenBody class="rz-background-color-base-300">
+        @Body
+    </RadzenBody>
+</RadzenLayout>
+@code {
+    bool sidebarExpanded = false;
+}

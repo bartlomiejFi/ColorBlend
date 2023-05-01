@@ -1,0 +1,76 @@
+﻿@using ColorBlend.Models;
+@using ColorBlend.ViewModels;
+
+@if (ViewModel?.ColorsSetList == null)
+{
+    <RadzenText TextStyle="TextStyle.H6">loading...</RadzenText>
+}
+else if (ViewModel?.ColorsSetList.Count == 0)
+{
+    <RadzenText TextStyle="TextStyle.H6">Choose two colors and confirm to save result!</RadzenText>
+}
+
+else
+{
+    <table class="table" style="table-layout:fixed;">
+        <thead>
+            <tr class="loose">
+                <th width="200px">Saving time</th>
+                <th width="200px">Cover</th>
+                <th width="200px">Colors</th>
+                <th width="200px">Values</th>
+                <th width="200px"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var colors in ViewModel.ColorsSetList.OrderByDescending(i => i.TimeMixed))
+            {
+                <tr class="loose">
+                    <td width="200px"> <RadzenText style="text-align:center;text" TextStyle="TextStyle.Subtitle2">@colors.TimeMixed</RadzenText></td>
+                    <td width="200px"> <RadzenText style="" TextStyle="TextStyle.Subtitle2">"Phewture Funk"</RadzenText></td>
+                    <td width="200px">
+                        <div class="d-flex flex-md-column mb-3" style="vertical-align:central;align-items:center">
+                            <div class="p-2" style="border-radius:2px;width: 200px; height: 30px; background-color: @colors.C1"></div>
+                            <div class="p-2" style="border-radius:2px;width: 200px; height: 30px; background-color: @colors.C3"></div>
+                            <div class="p-2" style="border-radius:2px;width: 200px; height: 30px; background-color: @colors.C2"></div>
+                        </div>
+                    </td>
+                    <td width="200px" style="align-items:center">
+                        <RadzenText style="text-align:center;" TextStyle="TextStyle.Subtitle2">@colors.C1</RadzenText>
+                        <RadzenText style="text-align:center;" TextStyle="TextStyle.Subtitle2">@colors.C3</RadzenText>
+                        <RadzenText style="text-align:center;" TextStyle="TextStyle.Subtitle2">@colors.C2</RadzenText>
+                    </td>
+                    <td width="200px">
+                        <RadzenButton Variant="Variant.Text"
+                              ButtonStyle="ButtonStyle.Primary"
+                              Icon="delete"
+                              Click="@(() => Remove(colors))"
+                              disabled="@ViewModel.IsBusy"
+                              style="margin:20px;width:50px; height: 50px;box-shadow: var(--rz-shadow-2)" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+
+<style>
+    tr.loose {
+        line-height: 2rem;
+        text-align: center;
+        align-content: center;
+        align-items: center;
+        border:10px;
+    }
+</style>
+
+@code {
+    [CascadingParameter(Name = "ViewModel")]
+    IColorsViewModel ViewModel { get; set; }
+
+    void Remove(ColorsSet colorsSet)
+    {
+        ViewModel.ColorsSetList.Remove(colorsSet);
+    }
+}

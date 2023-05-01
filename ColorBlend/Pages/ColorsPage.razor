@@ -1,0 +1,41 @@
+﻿@page "/"
+
+@using System.ComponentModel;
+@inject IColorsViewModel ViewModel
+@inject NotificationService NotificationService
+@implements IDisposable
+
+<ErrorBoundary>
+    <CascadingValue Value=@ViewModel Name="ViewModel">
+        <ColorsSetComponent />
+        <ColorsListComponent />
+    </CascadingValue>
+</ErrorBoundary>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        ViewModel.PropertyChanged += async (sender, e) =>
+        {
+            await InvokeAsync(() =>
+            {
+                StateHasChanged();
+            });
+        };
+        await base.OnInitializedAsync();
+    }
+
+    async void OnPropertyChangedHandler(object sender, PropertyChangedEventArgs e)
+    {
+        await InvokeAsync(() =>
+        {
+            StateHasChanged();        
+        });
+    }
+
+    public void Dispose()
+    {
+        ViewModel.PropertyChanged -= OnPropertyChangedHandler;
+    }
+
+}
