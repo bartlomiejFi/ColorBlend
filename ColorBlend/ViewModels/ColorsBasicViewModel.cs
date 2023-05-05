@@ -8,9 +8,9 @@ namespace ColorBlend.ViewModels
     public class ColorsBasicViewModel : INotifyPropertyChanged, IColorsViewModel
     {
         #region Fields
-        private string color;
-        private string color2;
-        private string color3;
+        private string color = "rgb(0, 0, 0)";
+        private string color2 = "rgb(0, 0, 0)";
+        private string colorMixed = "rgb(0, 0, 0)";
         private List<ColorsSet> colorsSetList = new();
         private bool isBusy = false;
         private ColorService colorService = new();
@@ -25,6 +25,8 @@ namespace ColorBlend.ViewModels
             {
                 color = value;
                 colorsSet.C1 = color;
+                colorsSet = colorService.MixColors(colorsSet);
+                ColorMixed = colorsSet.C3;
                 OnPropertyChanged();
             }
         }
@@ -35,15 +37,17 @@ namespace ColorBlend.ViewModels
             {
                 color2 = value;
                 colorsSet.C2 = color2;
+                colorsSet = colorService.MixColors(colorsSet);
+                ColorMixed = colorsSet.C3;
                 OnPropertyChanged();
             }
         }
-        public string Color3
+        public string ColorMixed
         {
-            get => color3;
+            get => colorMixed;
             set
             {
-                color3 = value;
+                colorMixed = value;
                 OnPropertyChanged();
             }
         }
@@ -76,12 +80,21 @@ namespace ColorBlend.ViewModels
         }
         #endregion
 
+        #region Constructors
+        public ColorsBasicViewModel()
+        {
+            colorsSet.C1 = Color;
+            colorsSet.C2 = Color2;
+        }
+
+        #endregion
+
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
         #region Methods
-        public void MixAndSaveColorsSet(ColorsSet colorsSet)
+        public void SaveColorsSet(ColorsSet colorsSet)
         {
             IsBusy = true;
             colorsSet.TimeMixed = DateTime.Now.ToLocalTime();
@@ -93,15 +106,13 @@ namespace ColorBlend.ViewModels
             {
                 colorsSetList.Remove(colorsSet);
             }
-            colorsSet = colorService.MixColors(colorsSet);
-            Color3 = colorsSet.C3;
 
             colorsSetList.Add(colorsSet);
             OnPropertyChanged(nameof(ColorsSetList));
             IsBusy = false;
         }
 
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
