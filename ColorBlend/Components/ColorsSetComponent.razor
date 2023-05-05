@@ -426,7 +426,7 @@ c-28 -50 -27 -69 3 -42 27 24 32 21 22 -14 -11 -37 -26 -55 -17 -21 7 31 -7
  preserveAspectRatio="xMidYMid meet" style="border-radius:2px;box-shadow: var(--rz-shadow-1)" >
 
 		<g transform="translate(0.000000,293.000000) scale(0.100000,-0.100000)"
-fill="@ViewModel.Color3" stroke="none">
+fill="@ViewModel.ColorMixed" stroke="none">
 <path d="M0 1465 l0 -1465 1500 0 1500 0 0 1465 0 1465 -1500 0 -1500 0 0
 -1465z m995 1193 c14 -6 25 -17 25 -24 0 -7 14 -29 30 -47 34 -39 36 -47 15
 -47 -9 0 -20 11 -25 24 -5 13 -18 27 -29 31 -12 3 -21 11 -21 16 0 12 -51 0
@@ -825,7 +825,7 @@ c-28 -50 -27 -69 3 -42 27 24 32 21 22 -14 -11 -37 -26 -55 -17 -21 7 31 -7
 -9 -4 -9 -10z"/>
 </g>
 </svg>
-			<RadzenButton Text="mix & save"
+			<RadzenButton Text="save"
 			Variant="Variant.Text"
 			ButtonStyle="ButtonStyle.Primary"
 			disabled="@ViewModel.IsBusy"
@@ -1271,12 +1271,12 @@ c-28 -50 -27 -69 3 -42 27 24 32 21 22 -14 -11 -37 -26 -55 -17 -21 7 31 -7
 
 	void SaveColorsSet()
 	{
-		ViewModel.MixAndSaveColorsSet(ViewModel.ColorsSet);
+		ViewModel.SaveColorsSet(ViewModel.ColorsSet);
 		ShowNotification(new NotificationMessage
 				{
 					Severity = NotificationSeverity.Info,
 					Summary = "Mixing result:",
-					Detail = @ViewModel.Color3,
+					Detail = @ViewModel.ColorMixed,
 					Duration = 4000
 				});
 		ViewModel.ColorsSet = new ColorsSet();

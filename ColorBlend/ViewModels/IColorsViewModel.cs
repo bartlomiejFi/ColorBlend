@@ -15,7 +15,7 @@ namespace ColorBlend.ViewModels
 
         string Color2 { get; set; }
 
-        string Color3 { get; set; }
-        void MixAndSaveColorsSet(ColorsSet colorsSet);
+        string ColorMixed { get; set; }
+        void SaveColorsSet(ColorsSet colorsSet);
     }
 }

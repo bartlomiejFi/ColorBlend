@@ -25,17 +25,6 @@
         await base.OnInitializedAsync();
     }
 
-    async void OnPropertyChangedHandler(object sender, PropertyChangedEventArgs e)
-    {
-        await InvokeAsync(() =>
-        {
-            StateHasChanged();        
-        });
-    }
-
     public void Dispose()
-    {
-        ViewModel.PropertyChanged -= OnPropertyChangedHandler;
-    }
-
+    { }
 }
