@@ -1,5 +1,5 @@
 <p align="center">
-  <img  src="Images/screen1.png">
+  <img  src="Images/screen2.PNG">
 </p>
 
 # Project description
