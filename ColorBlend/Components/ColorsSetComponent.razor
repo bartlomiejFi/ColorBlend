@@ -8,12 +8,11 @@
 	<div  class="container" style="text-align:center;align-content:space-between">
 		<div class="row" style="margin:10px; flex-wrap:nowrap;">
 			<div class="col" style="margin:0px;">				
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="300.000000pt" height="293.000000pt" viewBox="0 0 300.000000 293.000000"
- preserveAspectRatio="xMidYMid meet" style="border-radius:2px;box-shadow: var(--rz-shadow-1)" >
-
-		<g transform="translate(0.000000,293.000000) scale(0.100000,-0.100000)"
-fill="@ViewModel.Color" stroke="none">
+				<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+				width="300.000000pt" height="293.000000pt" viewBox="0 0 300.000000 293.000000"
+				preserveAspectRatio="xMidYMid meet" style="border-radius:2px;box-shadow: var(--rz-shadow-1)" >
+				<g transform="translate(0.000000,293.000000) scale(0.100000,-0.100000)"
+				fill="@ViewModel.Color1" stroke="none">
 <path d="M0 1465 l0 -1465 1500 0 1500 0 0 1465 0 1465 -1500 0 -1500 0 0
 -1465z m995 1193 c14 -6 25 -17 25 -24 0 -7 14 -29 30 -47 34 -39 36 -47 15
 -47 -9 0 -20 11 -25 24 -5 13 -18 27 -29 31 -12 3 -21 11 -21 16 0 12 -51 0
@@ -413,7 +412,7 @@ c-28 -50 -27 -69 3 -42 27 24 32 21 22 -14 -11 -37 -26 -55 -17 -21 7 31 -7
 </g>
 </svg>
 				<RadzenColorPicker style="border-radius:5px;margin:10px;vertical-align:central;box-shadow: var(--rz-shadow-2);width: stretch;height: stretch"     
-				@bind-Value=@ViewModel.Color
+				@bind-Value=@ViewModel.Color1
 				ShowButton="false"
 				ShowColors="false"
 				ShowHSV="true"
@@ -1251,6 +1250,7 @@ c-28 -50 -27 -69 3 -42 27 24 32 21 22 -14 -11 -37 -26 -55 -17 -21 7 31 -7
 	<input type="hidden" @bind-value="@ViewModel.ColorsSet.Id" />
 </EditForm>
 
+
 @code {
 	[CascadingParameter(Name = "ViewModel")]
 	IColorsViewModel ViewModel { get; set; }
@@ -1275,12 +1275,14 @@ c-28 -50 -27 -69 3 -42 27 24 32 21 22 -14 -11 -37 -26 -55 -17 -21 7 31 -7
 		ShowNotification(new NotificationMessage
 				{
 					Severity = NotificationSeverity.Info,
-					Summary = "Mixing result:",
-					Detail = @ViewModel.ColorMixed,
+					Summary = "Result:",
+					Detail = @ViewModel.ColorsSet.MixingResultInfo,
 					Duration = 4000
 				});
 		ViewModel.ColorsSet = new ColorsSet();
-		ViewModel.ColorsSet.C1 = ViewModel.Color;
-		ViewModel.ColorsSet.C2 = ViewModel.Color2;
+		ViewModel.ColorsSet.Color1 = ViewModel.Color1;
+		ViewModel.ColorsSet.Color2 = ViewModel.Color2;
+		ViewModel.ColorsSet.ColorMixed = ViewModel.ColorMixed;
+
 	}
 }

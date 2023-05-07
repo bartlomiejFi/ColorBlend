@@ -16,21 +16,12 @@ namespace ColorBlendTests
 
 			Services.AddSingleton<NotificationService>(new NotificationService());
 			Services.AddSingleton<IColorsViewModel>(new ColorsBasicViewModel());
-			Services.AddSingleton<ColorService>(new ColorService());
+			Services.AddSingleton<BlendService>(new BlendService());
 			var cut = RenderComponent<ColorsPage>();
 
 
-			Assert.Equal("mix & save", cut.Find($".rz-button-text").TextContent);
-			Assert.Equal("Choose two colors and confirm to save result!", cut.Find($".rz-text-h6").TextContent);
+			Assert.Equal("save", cut.Find($".rz-button-text").TextContent);
 
-			//cut.Find("#ViewModel.Color input").Change("rgb(100, 100, 100)");
-			//cut.Find("RadzenColorPicker").SetAttribute("Color2", "rgb(200, 100, 100)");
-
-			//var cells = cut.FindAll("table>tbody>tr>td");
-
-			//Assert.Collection(cells,
-			//    c => Assert.Equal("", c.InnerHtml)
-			//    );
 		}
 
 	}

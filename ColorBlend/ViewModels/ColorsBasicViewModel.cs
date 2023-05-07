@@ -13,20 +13,20 @@ namespace ColorBlend.ViewModels
         private string colorMixed = "rgb(0, 0, 0)";
         private List<ColorsSet> colorsSetList = new();
         private bool isBusy = false;
-        private ColorService colorService = new();
+        private BlendService colorService = new();
         private ColorsSet colorsSet = new();
         #endregion
 
         #region Propereties
-        public string Color
+        public string Color1
         {
             get => color;
             set
             {
                 color = value;
-                colorsSet.C1 = color;
+                colorsSet.Color1 = color;
                 colorsSet = colorService.MixColors(colorsSet);
-                ColorMixed = colorsSet.C3;
+                ColorMixed = colorsSet.ColorMixed;
                 OnPropertyChanged();
             }
         }
@@ -36,9 +36,9 @@ namespace ColorBlend.ViewModels
             set
             {
                 color2 = value;
-                colorsSet.C2 = color2;
+                colorsSet.Color2 = color2;
                 colorsSet = colorService.MixColors(colorsSet);
-                ColorMixed = colorsSet.C3;
+                ColorMixed = colorsSet.ColorMixed;
                 OnPropertyChanged();
             }
         }
@@ -83,8 +83,9 @@ namespace ColorBlend.ViewModels
         #region Constructors
         public ColorsBasicViewModel()
         {
-            colorsSet.C1 = Color;
-            colorsSet.C2 = Color2;
+            colorsSet.Color1 = Color1;
+            colorsSet.Color2 = Color2;
+            colorsSet.ColorMixed = ColorMixed;
         }
 
         #endregion
@@ -106,7 +107,8 @@ namespace ColorBlend.ViewModels
             {
                 colorsSetList.Remove(colorsSet);
             }
-
+            colorsSet = colorService.MixColors(colorsSet);
+            ColorMixed = colorsSet.ColorMixed;
             colorsSetList.Add(colorsSet);
             OnPropertyChanged(nameof(ColorsSetList));
             IsBusy = false;
