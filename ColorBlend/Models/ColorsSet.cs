@@ -10,11 +10,17 @@ namespace ColorBlend.Models
 
         #region Properties
         [Required]
-        public string C1 { get; set; }
+        public string Color1 { get; set; }
         [Required]
-        public string C2 { get; set; }
+        public string Color2 { get; set; }
 
-        public string C3 { get; set; }
+        public string ColorMixed { get; set; }
+
+        public string MixingResultInfo { get; set; }
+
+        public string Color1Info { get; set; }
+
+        public string Color2Info { get; set; }
 
         public DateTime TimeMixed { get; set; }
 

@@ -5,65 +5,49 @@
 {
     <RadzenText TextStyle="TextStyle.H6">loading...</RadzenText>
 }
-else if (ViewModel?.ColorsSetList.Count == 0)
-{
-    <RadzenText TextStyle="TextStyle.H6">Choose two colors and confirm to save result!</RadzenText>
-}
 
 else
 {
-    <table class="table" style="table-layout:fixed;">
-        <thead>
-            <tr class="loose">
-                <th width="200px">Saving time</th>
-                <th width="200px">Cover</th>
-                <th width="200px">Colors</th>
-                <th width="200px">Values</th>
-                <th width="200px"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var colors in ViewModel.ColorsSetList.OrderByDescending(i => i.TimeMixed))
-            {
-                <tr class="loose">
-                    <td width="200px"> <RadzenText style="text-align:center;text" TextStyle="TextStyle.Subtitle2">@colors.TimeMixed</RadzenText></td>
-                    <td width="200px"> <RadzenText style="" TextStyle="TextStyle.Subtitle2">"Phewture Funk"</RadzenText></td>
-                    <td width="200px">
-                        <div class="d-flex flex-md-column mb-3" style="vertical-align:central;align-items:center">
-                            <div class="p-2" style="border-radius:2px;width: 200px; height: 30px; background-color: @colors.C1"></div>
-                            <div class="p-2" style="border-radius:2px;width: 200px; height: 30px; background-color: @colors.C3"></div>
-                            <div class="p-2" style="border-radius:2px;width: 200px; height: 30px; background-color: @colors.C2"></div>
-                        </div>
-                    </td>
-                    <td width="200px" style="align-items:center">
-                        <RadzenText style="text-align:center;" TextStyle="TextStyle.Subtitle2">@colors.C1</RadzenText>
-                        <RadzenText style="text-align:center;" TextStyle="TextStyle.Subtitle2">@colors.C3</RadzenText>
-                        <RadzenText style="text-align:center;" TextStyle="TextStyle.Subtitle2">@colors.C2</RadzenText>
-                    </td>
-                    <td width="200px">
-                        <RadzenButton Variant="Variant.Text"
-                              ButtonStyle="ButtonStyle.Primary"
-                              Icon="delete"
-                              Click="@(() => Remove(colors))"
-                              disabled="@ViewModel.IsBusy"
-                              style="margin:20px;width:50px; height: 50px;box-shadow: var(--rz-shadow-2)" />
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-}
-
-<style>
-    tr.loose {
-        line-height: 2rem;
-        text-align: center;
-        align-content: center;
-        align-items: center;
-        border:10px;
+    @foreach (var colors in ViewModel.ColorsSetList.OrderByDescending(i => i.TimeMixed))
+    {
+        <RadzenCard Class="rz-background-color-base-200 rz-my-4 rz-mx-4" Style="width:stretch">           
+                <RadzenStack Gap="0">
+                    <RadzenRow RowGap="5">
+                        <RadzenColumn SizeSM="2">
+                            <RadzenText TextStyle="TextStyle.Overline" class="rz-display-flex rz-mt-4 rz-my-1">Cover</RadzenText>
+                            <RadzenText style="" TextStyle="TextStyle.Subtitle2">"Phewture Funk"</RadzenText>
+                            <RadzenText TextStyle="TextStyle.Overline" class="rz-display-flex rz-mt-6 rz-mb-1">Time mixed</RadzenText>
+                            <RadzenText style="" TextStyle="TextStyle.Subtitle2">@colors.TimeMixed</RadzenText>
+                        </RadzenColumn>
+                        <RadzenColumn SizeSM="2">
+                            <RadzenText TextStyle="TextStyle.Overline" class="rz-display-flex rz-mt-4 rz-my-1">Colors</RadzenText>
+                            <RadzenText style="" TextStyle="TextStyle.Subtitle2">@colors.Color1Info</RadzenText>
+                            <RadzenText style="" TextStyle="TextStyle.Subtitle2">@colors.MixingResultInfo</RadzenText>
+                            <RadzenText style="" TextStyle="TextStyle.Subtitle2">@colors.Color2Info</RadzenText>
+                        </RadzenColumn>
+                        <RadzenColumn SizeSM="7"> 
+                            <div class="d-flex flex-row" style="height:120px">                           
+                                <div class="w-100 p-5 m-1" style="width:300px;border-radius:2px; background-color: @colors.Color1"></div>                            
+                                <div class="w-100 p-5 m-1" style="width:300px;border-radius:2px; background-color: @colors.ColorMixed"></div>                            
+                                <div class="w-100 p-5 m-1" style="width:300px;border-radius:2px; background-color: @colors.Color2"></div>
+                            </div>
+                        </RadzenColumn>                    
+                        <RadzenColumn SizeSM="1">                    
+                            <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Center" Gap="0" class="rz-display-flex rz-mt-4 rz-my-1">                     
+                                <RadzenButton Variant="Variant.Text"      
+                                ButtonStyle="ButtonStyle.Primary"
+                                Icon="delete"
+                                Click="@(() => Remove(colors))"                           
+                                disabled="@ViewModel.IsBusy"
+                                style="margin:20px;width:50px; height: 50px;box-shadow: var(--rz-shadow-2)"
+                                />
+                            </RadzenStack>
+                        </RadzenColumn>
+                    </RadzenRow>
+                </RadzenStack>
+        </RadzenCard>
     }
-</style>
+}
 
 @code {
     [CascadingParameter(Name = "ViewModel")]

@@ -11,7 +11,7 @@ namespace ColorBlend.ViewModels
 
         event PropertyChangedEventHandler PropertyChanged;
 
-        string Color { get; set; }
+        string Color1 { get; set; }
 
         string Color2 { get; set; }
 
